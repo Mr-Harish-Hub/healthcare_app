@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>History</title></head>
+<body style="font-family:Arial;padding:24px">
+<div style="max-width:820px;margin:auto">
+  <h3>Your Visits</h3><a href="/patient/dashboard">Back</a>
+  <table style="width:100%;margin-top:12px">
+    <thead><tr style="background:#f7f7f7"><th>#</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th><th>Prescription</th></tr></thead>
+    <tbody>
+      {% for a in history %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ a['doctor_name'] }}</td>
+        <td>{{ a['date'] }}</td>
+        <td>{{ a['time'] }}</td>
+        <td>{{ a['status'] }}</td>
+        <td>{{ a['prescriptions'] or '-' }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6">No visits found</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</body></html>

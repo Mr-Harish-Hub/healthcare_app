@@ -1,0 +1,17 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Update</title></head>
+<body style="font-family:Arial;padding:24px">
+<div style="max-width:700px;margin:auto">
+  <h3>Update Visit #{{ appointment['id'] }}</h3>
+  <form method="POST">
+    <label>Status</label>
+    <select name="status" style="width:100%;padding:8px;margin:6px 0">
+      <option {% if appointment['status']=='Booked' %}selected{% endif %}>Booked</option>
+      <option {% if appointment['status']=='Completed' %}selected{% endif %}>Completed</option>
+      <option {% if appointment['status']=='Cancelled' %}selected{% endif %}>Cancelled</option>
+    </select>
+    <label>Diagnosis</label><textarea name="diagnosis" style="width:100%;padding:8px;margin:6px 0">{{ appointment['diagnosis'] }}</textarea>
+    <label>Prescription</label><textarea name="prescription" style="width:100%;padding:8px;margin:6px 0">{{ appointment['prescriptions'] }}</textarea>
+    <button style="background:#2b8a8a;color:#fff;padding:10px;border:none;border-radius:6px">Save</button>
+  </form>
+</div>
+</body></html>

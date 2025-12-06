@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Admin — Dashboard</title>
+  <style>
+    body{font-family:Helvetica,Arial;background:#f4f7fb;margin:0}
+    .wrap{max-width:1100px;margin:28px auto;padding:18px}
+    .cards{display:flex;gap:12px;flex-wrap:wrap}
+    .card{background:#fff;padding:14px;border-radius:8px;box-shadow:0 6px 18px rgba(15,25,40,0.06);min-width:180px;text-align:center}
+    nav a{margin-right:10px;color:#1f6feb;text-decoration:none}
+    table{width:100%;border-collapse:collapse;margin-top:14px}
+    th,td{padding:8px;border-bottom:1px solid #eee;text-align:left}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header style="display:flex;justify-content:space-between;align-items:center">
+      <h1>Hospital Admin</h1>
+      <div>
+        <span>Signed in as: <strong>{{ admin }}</strong></span>&nbsp;|&nbsp;<a href="/logout">Logout</a>
+      </div>
+    </header>
+
+    <section style="margin-top:14px" class="cards">
+      <div class="card">
+        <h3>Total Doctors</h3>
+        <div style="font-size:20px">{{ stats.doctors }}</div>
+        <div style="margin-top:8px"><a href="/admin/view-doctors">Manage</a></div>
+      </div>
+      <div class="card">
+        <h3>Total Patients</h3>
+        <div style="font-size:20px">{{ stats.patients }}</div>
+        <div style="margin-top:8px"><a href="/admin/registered-patients">View</a></div>
+      </div>
+      <div class="card">
+        <h3>Total Appointments</h3>
+        <div style="font-size:20px">{{ stats.appointments }}</div>
+        <div style="margin-top:8px"><a href="/admin/view-appointments">All</a></div>
+      </div>
+    </section>
+
+    <nav style="margin-top:20px">
+      <a href="/admin/add-doctor">Add Doctor</a>
+      <a href="/admin/view-doctors">Doctors</a>
+      <a href="/admin/registered-patients">Patients</a>
+      <a href="/admin/view-appointments">Appointments</a>
+      <a href="/admin/search">Search</a>
+    </nav>
+
+    <section style="margin-top:18px">
+      <h2>Recent activity</h2>
+      <table>
+        <thead><tr><th>#</th><th>Type</th><th>Summary</th><th>At</th></tr></thead>
+        <tbody>
+          {% for e in recent %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ e.type }}</td>
+            <td>{{ e.summary }}</td>
+            <td>{{ e.at }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="4">No recent activity</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </div>
+</body>
+</html>
