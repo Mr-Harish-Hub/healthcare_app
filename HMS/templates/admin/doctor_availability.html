@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Doctor Slots</title>
+<style>body{font-family:Arial;background:#f6f8fb}.wrap{max-width:920px;margin:28px auto;padding:12px;background:#fff;border-radius:8px}table{width:100%;border-collapse:collapse}th,td{padding:8px;border-bottom:1px solid #eee}</style></head>
+<body>
+  <div class="wrap">
+    <h2>Doctor availability</h2>
+    <div><a href="/admin/view-doctors">Back</a></div>
+    <table>
+      <thead><tr><th>#</th><th>Date</th><th>Time range</th><th>Status</th></tr></thead>
+      <tbody>
+        {% for s in slots %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ s['day'] }}</td>
+          <td>{{ s['time_range'] }}</td>
+          <td>{{ 'Reserved' if s['is_booked'] else 'Open' }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4">No slots available</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

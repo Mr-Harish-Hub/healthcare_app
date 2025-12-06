@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Doctors</title>
+<style>body{font-family:Arial;background:#f6f7fb} .wrap{max-width:1000px;margin:28px auto;padding:18px;background:#fff;border-radius:8px} table{width:100%;border-collapse:collapse} th,td{padding:10px;border-bottom:1px solid #eee} .btn{padding:6px 8px;border-radius:6px;text-decoration:none} .view{background:#1f6feb;color:#fff} .del{background:#d9534f;color:#fff} .muted{color:#666}</style>
+</head>
+<body>
+  <div class="wrap">
+    <h2>Doctors</h2>
+    <div style="margin-bottom:12px"><a href="/admin/add-doctor">Add Doctor</a> <a href="/admin/dashboard">Back</a></div>
+    <table>
+      <thead><tr><th>#</th><th>Name</th><th>Specialization</th><th>Availability</th><th>Actions</th></tr></thead>
+      <tbody>
+        {% for d in doctors %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ d['name'] }}</td>
+          <td>{{ d['specialization'] }}</td>
+          <td>{{ d['availability'] }}</td>
+          <td>
+            <a class="btn view" href="/admin/doctor-availability/{{ d['id'] }}">Slots</a>
+            <a class="btn" href="/admin/edit-doctor/{{ d['id'] }}">Edit</a>
+            <a class="btn del" href="/admin/delete-doctor/{{ d['id'] }}">Remove</a>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5">No doctors registered.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

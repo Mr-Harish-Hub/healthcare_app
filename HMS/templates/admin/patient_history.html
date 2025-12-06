@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Patient History</title>
+<style>body{font-family:Arial;background:#f6f8fb} .wrap{max-width:980px;margin:24px auto;padding:16px;background:#fff;border-radius:8px} table{width:100%;border-collapse:collapse} th,td{padding:8px;border-bottom:1px solid #eee}</style></head>
+<body>
+  <div class="wrap">
+    <h2>History — {{ patient['name'] }}</h2>
+    <div><a href="/admin/registered-patients">Back to patients</a></div>
+    <table style="margin-top:12px">
+      <thead><tr><th>#</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th><th>Diagnosis</th><th>Prescription</th></tr></thead>
+      <tbody>
+        {% for r in history %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ r['doctor_name'] or '-' }}</td>
+          <td>{{ r['date'] }}</td>
+          <td>{{ r['time'] }}</td>
+          <td>{{ r['status'] }}</td>
+          <td>{{ r['diagnosis'] or '-' }}</td>
+          <td>{{ r['prescriptions'] or '-' }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="7">No recorded visits</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Search</title>
+<style>body{font-family:Arial;background:#f5f7fb}.wrap{max-width:900px;margin:28px auto;padding:16px;background:#fff;border-radius:8px} input{padding:8px;width:70%;border-radius:6px;border:1px solid #ccc} button{padding:8px 12px}</style></head>
+<body>
+  <div class="wrap">
+    <h2>Search patients / doctors</h2>
+    <form method="POST" action="/admin/search" style="margin-bottom:14px">
+      <input name="q" placeholder="name, email or specialization" value="{{ query }}">
+      <button type="submit">Search</button>
+      <a style="margin-left:10px" href="/admin/dashboard">Cancel</a>
+    </form>
+
+    <h3>Patients</h3>
+    <table><tbody>
+      {% for p in results.patients %}
+      <tr><td>{{ loop.index }}</td><td>{{ p['name'] }}</td><td>{{ p['email'] }}</td><td><a href="/admin/patient-history/{{ p['id'] }}">Open</a></td></tr>
+      {% else %}
+      <tr><td colspan="4">No patients found</td></tr>
+      {% endfor %}
+    </tbody></table>
+
+    <h3 style="margin-top:18px">Doctors</h3>
+    <table><tbody>
+      {% for d in results.doctors %}
+      <tr><td>{{ loop.index }}</td><td>{{ d['name'] }}</td><td>{{ d['specialization'] }}</td><td><a href="/admin/doctor-availability/{{ d['id'] }}">Slots</a></td></tr>
+      {% else %}
+      <tr><td colspan="4">No doctors found</td></tr>
+      {% endfor %}
+    </tbody></table>
+  </div>
+</body>
+</html>
